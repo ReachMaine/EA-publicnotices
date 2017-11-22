@@ -11,16 +11,19 @@ if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['
 }
 
 function get_public_notices ($in_date_str) {
+  $out_html = "<p>yep</p>";
+  global $wpdb;
 	$in_date_date = new DateTime($in_date_str);
 	$datestr = $in_date_date->format("Ymd");
-	 $sqlreq = 'SELECT CONCAT("<notice><subcategory_id>17</subcategory_id><date>",
+	$sqlreq = 'SELECT CONCAT("<notice><subcategory_id>17</subcategory_id><date>",
 							DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y"),
 							"</date><text>",
               post_title,
               post_content,"</text></notice>")
               FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
-	return $sqlreq;
-
+	$sqlresult = $wpdb->get_results($sqlreq);
+  echo"<pre>";  var_dump($sqlresult);  echo "</pre>";
+  return $out_html;
 }
 
 
