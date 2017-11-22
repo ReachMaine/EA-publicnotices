@@ -1,0 +1,100 @@
+@import url("../flatsome/css/foundation.css");
+/*
+Theme Name: Public Notices
+Theme URI: http://flatsome.uxthemes.com/
+Description:  Flatsome child theme for public Notices
+Author: UX Themes
+Author URI: http: //www.uxthemes.com/
+Template: flatsome
+Version: 1.8
+*/
+/* Colors ---------------------------------------------- */
+/* Typography ------------------------------------------ */
+/* ***** start customizing for Google Custom Search ***** */
+.gsc-tabsArea .gsc-tabHeader.gsc-inline-block {
+  width: 100px; }
+
+/* ***** end customizing for Google Custom Search ***** */
+/* Welcome to Compass. Use this file to define print styles.
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+@media print {
+  body a[href]:after {
+    content: ""; } }
+#site-byline-image {
+  display: table-cell;
+  vertical-align: top; }
+  #site-byline-image img {
+    float: right;
+    padding-top: 20px; }
+
+#top-banner-ad {
+  padding: 10px 0 0 0; }
+
+.page-wrapper {
+  padding-top: 10px; }
+
+/* =Theme customization starts here */
+.eai-right-rail {
+  -webkit-box-shadow: 7px 15px 33px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 15px 33px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 15px 33px 0px rgba(0, 0, 0, 0.75);
+  margin-bottom: 35px; }
+
+.ad-container span {
+  display: inline-block;
+  width: 100%;
+  height: auto; }
+.ad-container a {
+  display: inline-block;
+  width: 100% !important;
+  height: auto !important; }
+.ad-container img {
+  width: 100%;
+  height: auto !important; }
+
+article.type-post, article.hentry {
+  margin-bottom: 20px; }
+
+.widget {
+  margin-bottom: 10px; }
+
+.widget-zbtlist ul.zbt-ad-list li {
+  padding-right: 1%;
+  padding-left: 1%;
+  width: 30%;
+  float: left; }
+  .widget-zbtlist ul.zbt-ad-list li .zbt-ad-link {
+    float: left;
+    width: 100%;
+    text-align: right; }
+
+footer.entry-meta-archive {
+  margin-top: 0px;
+  padding: 0px;
+  border-top: 0px;
+  border-bottom: 2px solid #DDD; }
+
+footer .footer.dark {
+  padding-top: 10px;
+  background-color: #333333 !important; }
+  footer .footer.dark .columns {
+    padding-left: 25px;
+    padding-right: 25px; }
+  footer .footer.dark .widget-title {
+    text-align: center;
+    color: #2bb673;
+    font-size: 14px; }
+  footer .footer.dark .tx-div.small {
+    width: 100%;
+    background-color: #444;
+    opacity: 1.0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    /* opacity: inherit; */ }
+  footer .footer.dark a {
+    font-size: 14px;
+    color: #DDD;
+    line-height: 20px; }
+footer .absolute-footer.dark {
+  background-color: #000; }
