@@ -12,19 +12,18 @@ if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['
 }
 
 function get_public_notices ($in_date_str) {
-  $out_html = "<p>yep. Yep.</p>";
-  //global $wpdb;
+  global $wpdb;
+  $out_html = "";
 	$in_date_date = new DateTime($in_date_str);
 	$datestr = $in_date_date->format("Ymd");
- $sqlreq = 'SELECT CONCAT("<notice><subcategory_id>17</subcategory_id><date>",
+  $sqlreq = 'SELECT CONCAT("<notice><subcategory_id>17</subcategory_id><date>",
 							DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y"),
 							"</date><text>",
               post_title,
               post_content,"</text></notice>")
               FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
   $sqlreq = 'SELECT DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y"), post_title, post_content FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
-  $out_html .= $sqlreq;
-	//$sqlresult = $wpdb->get_results($sqlreq);
+	$sqlresult = $wpdb->get_results($sqlreq);
   //echo"<pre>";  var_dump($sqlresult);  echo "</pre>";
   /* foreach ($sqlresult as $pnotice) {
      $post_text = htmlspecialchars($pnotice->post_content, ENT_QUOTES);
@@ -38,9 +37,8 @@ function get_public_notices ($in_date_str) {
     //  $out_html .= $post_text;
     //  $out_html .= '</notice>';
   } // end for */
-
-  $out_html .= "<p>did the sql2...</p>";
-  return $out_html;
+ //echo $out_html; // for testing.
+  return $sqlresult;
 }
 
 
@@ -66,13 +64,15 @@ get_header(); ?>
 		<p> indate is: <?php  echo $indate; ?> </p>
 
 		<div id="export_notices">
-      <p>here.</p>
+      <p>here.2</p>
 			<?php if ($indate) {
         echo "<p>got date</p>";
-				$pnotices =  get_public_notices($indate);
-        echo $pnotices;
-        //echo"<pre>";  var_dump($pnotices);  echo "</pre>";
-        echo "<p>after get.. </p>";
+				$pnotice_array =  get_public_notices($indate);
+        if (count($pnotice_array) > 0) {
+          echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
+        } else {
+          echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
+        }
 			} ?>
 		</div>
 
