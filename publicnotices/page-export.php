@@ -61,14 +61,28 @@ get_header(); ?>
 			<input name="action" type="hidden" id="action" value="getexport" />
 		</form>
 
-		<p> indate is: <?php  echo $indate; ?> </p>
-
 		<div id="export_notices">
-      <p>here.2</p>
+      <p> Date is: <?php  echo $indate; ?> </p>
 			<?php if ($indate) {
-        echo "<p>got date</p>";
 				$pnotice_array =  get_public_notices($indate);
         if (count($pnotice_array) > 0) {
+          $count = 0;
+          $out_html = "";
+          foreach($pnotice_array as $pnotice) {
+             /* $post_text = htmlspecialchars($pnotice->post_content, ENT_QUOTES);
+             $schar = array("ë", "§", "©", "•","●","—","–")
+            $rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;". "&mdash;", "&ndash;");
+            $post_text = str_replace($schar, $rchar, $post_text); */
+
+            //  $out_html .= '<notice><subcategory_id>17</subcategory_id>';
+            //  $out_html .= '<date>'.post_date.'</date>';
+            echo "<p> post title: ".$pnotice->post_title."</p>";
+            $out_html .= $pnotice->post_title.' ';
+            //  $out_html .= $post_text;
+            //  $out_html .= '</notice>';
+            $count = $count + 1;
+          } // end for
+          echo $out_html + "number of rows: ".$count;
           echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
         } else {
           echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
