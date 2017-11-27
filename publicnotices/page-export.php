@@ -10,7 +10,23 @@ Template name: Export Notices
 if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['action'] == 'getexport' ) {
     $indate = $_GET['targetday'];
 }
+if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['pnotices'] )  ) {
+  /* download notices */
+  echo "<p>should be downloading them....</p>";
+      /* $fp = fopen('fv-export.txt', 'w');
+      fwrite($fp, $_POST['pnotices' );
+      fclose($fp); */
 
+    /*   header('Content-Type: application/text');
+      header('Content-Disposition: attachment; filename="fv-export.txt"');
+      header('Pragma: no-cache');
+      header('Expires: 0');
+      header('Cache-Control: must-revalidate');
+      header('Pragma: public');
+      echo $_POST['pnotices'];
+      //exit; */
+
+}
 function get_public_notices ($in_date_str) {
   global $wpdb;
   $out_html = "";
@@ -52,6 +68,7 @@ get_header(); ?>
 			<?php if ($indate) {
 				$pnotice_array =  get_public_notices($indate);
         if (count($pnotice_array) > 0) {
+
           $count = 0;
           $pcount = 0;
           $out_html = "";
@@ -76,9 +93,39 @@ get_header(); ?>
           } // end for
           //echo "<p>thats it. </p>";
           echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
-          echo "<pre>".$out_html."</pre>";
+          //echo "<pre>".$out_html."</pre>";
+          echo "<p>here we go again....</p>";
+          echo '<div id="public-notice-out">';
+          echo $out_html;
+          echo '</div>';
           //echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
-        } else {
+          ?>
+          <form action="<?php the_permalink(); ?>" method="post">
+            <input type="hidden" name="pnotices" value="<?php echo $out_html ?>">
+            <input type="submit" name="submit_parse"  value="Download ">
+          </form>
+          <?php
+
+
+
+        echo "<p>Writing2....</p>";
+
+  /*     $fp = fopen('fv-export.txt', 'w');
+       fwrite($fp, $out_html );
+       fclose($fp);
+
+       header('Content-Type: application/text');
+       header('Content-Disposition: attachment; filename="fv-export.txt"');
+       header('Pragma: no-cache');
+       header('Expires: 0');
+       header('Cache-Control: must-revalidate');
+       header('Pragma: public');
+       header('Content-Length: ' . filesize('fv-export.txt'));
+       readfile('fv-export.txt');
+       exit;
+*/
+       //exit;
+      } else {
           echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
         }
 			} ?>
