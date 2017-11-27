@@ -22,22 +22,8 @@ function get_public_notices ($in_date_str) {
               post_title,
               post_content,"</text></notice>")
               FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
-  $sqlreq = 'SELECT DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y"), post_title, post_content FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
+  $sqlreq = 'SELECT DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y") as p_date, post_title, post_content FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
 	$sqlresult = $wpdb->get_results($sqlreq);
-  //echo"<pre>";  var_dump($sqlresult);  echo "</pre>";
-  /* foreach ($sqlresult as $pnotice) {
-     $post_text = htmlspecialchars($pnotice->post_content, ENT_QUOTES);
-     $schar = array("ë", "§", "©", "•","●","—","–")
-    $rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;". "&mdash;", "&ndash;");
-    $post_text = str_replace($schar, $rchar, $post_text);
-
-    //  $out_html .= '<notice><subcategory_id>17</subcategory_id>';
-    //  $out_html .= '<date>'.post_date.'</date>';
-      $out_html .= $pnotice->post_title.' ';
-    //  $out_html .= $post_text;
-    //  $out_html .= '</notice>';
-  } // end for */
- //echo $out_html; // for testing.
   return $sqlresult;
 }
 
@@ -69,20 +55,23 @@ get_header(); ?>
           $count = 0;
           $out_html = "";
           foreach($pnotice_array as $pnotice) {
-             /* $post_text = htmlspecialchars($pnotice->post_content, ENT_QUOTES);
-             $schar = array("ë", "§", "©", "•","●","—","–")
-            $rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;". "&mdash;", "&ndash;");
-            $post_text = str_replace($schar, $rchar, $post_text); */
+            $post_text = $pnotice->post_content;
+            //$post_text = htmlspecialchars($post_text , ENT_QUOTES);
+            //$schar = array("ë", "§", "©", "•","●","—","–")
+            //$rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;". "&mdash;", "&ndash;");
+            //$post_text = str_replace($schar, $rchar, $post_text); */
 
-            //  $out_html .= '<notice><subcategory_id>17</subcategory_id>';
-            //  $out_html .= '<date>'.post_date.'</date>';
-            echo "<p> post title: ".$pnotice->post_title."</p>";
+            $out_html .= '<notice><subcategory_id>17</subcategory_id>';
+            $out_html .= '<date>'.$pnotice->p_date.'</date>';
+            //echo "<p> post title: ".$pnotice->post_title."</p>";
             $out_html .= $pnotice->post_title.' ';
-            //  $out_html .= $post_text;
-            //  $out_html .= '</notice>';
+            $out_html .= $post_text;
+            $out_html .= '</notice>';
             $count = $count + 1;
           } // end for
-          echo $out_html + "number of rows: ".$count;
+          //echo "<p>thats it. </p>";
+          echo  "<p>Found: ".$count." public notices</p>";
+          echo "<pre>".$out_html."</pre>";
           echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
         } else {
           echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
