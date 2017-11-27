@@ -48,31 +48,36 @@ get_header(); ?>
 		</form>
 
 		<div id="export_notices">
-      <p> Date is: <?php  echo $indate; ?> </p>
+
 			<?php if ($indate) {
 				$pnotice_array =  get_public_notices($indate);
         if (count($pnotice_array) > 0) {
           $count = 0;
+          $pcount = 0;
           $out_html = "";
           foreach($pnotice_array as $pnotice) {
             $post_text = $pnotice->post_content;
+            $post_text = strip_tags($post_text); // strip out all html & php tags.
             //$post_text = htmlspecialchars($post_text , ENT_QUOTES);
             //$schar = array("ë", "§", "©", "•","●","—","–")
-            //$rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;". "&mdash;", "&ndash;");
+            //$rchar = array("&euml;","&sect;", "&copy;", "&#8226;", "&#8226;", "&mdash;", "&ndash;");
             //$post_text = str_replace($schar, $rchar, $post_text); */
-
-            $out_html .= '<notice><subcategory_id>17</subcategory_id>';
-            $out_html .= '<date>'.$pnotice->p_date.'</date>';
-            //echo "<p> post title: ".$pnotice->post_title."</p>";
-            $out_html .= $pnotice->post_title.' ';
-            $out_html .= $post_text;
-            $out_html .= '</notice>';
+            $post_text = str_replace("•","&#8226;", $post_text );
+            if ($post_text) { // if stripping html leaves nothing left (image only)
+              $out_html .= '<notice><subcategory_id>17</subcategory_id>';
+              $out_html .= '<date>'.$pnotice->p_date.'</date>';
+              //echo "<p> post title: ".$pnotice->post_title."</p>";
+              $out_html .= $pnotice->post_title.' ';
+              $out_html .= $post_text;
+              $out_html .= '</notice>';
+              $pcount = $pcount + 1;
+            }
             $count = $count + 1;
           } // end for
           //echo "<p>thats it. </p>";
-          echo  "<p>Found: ".$count." public notices</p>";
+          echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
           echo "<pre>".$out_html."</pre>";
-          echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
+          //echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
         } else {
           echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
         }
