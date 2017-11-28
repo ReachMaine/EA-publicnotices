@@ -10,23 +10,6 @@ Template name: Export Notices
 if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['action'] == 'getexport' ) {
     $indate = $_GET['targetday'];
 }
-if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['pnotices'] )  ) {
-  /* download notices */
-  echo "<p>should be downloading them....</p>";
-      /* $fp = fopen('fv-export.txt', 'w');
-      fwrite($fp, $_POST['pnotices' );
-      fclose($fp); */
-
-    /*   header('Content-Type: application/text');
-      header('Content-Disposition: attachment; filename="fv-export.txt"');
-      header('Pragma: no-cache');
-      header('Expires: 0');
-      header('Cache-Control: must-revalidate');
-      header('Pragma: public');
-      echo $_POST['pnotices'];
-      //exit; */
-
-}
 function get_public_notices ($in_date_str) {
   global $wpdb;
   $out_html = "";
@@ -58,7 +41,7 @@ get_header(); ?>
 	<div class="page-inner">
 		<form method="get" action="<?php the_permalink(); ?>">
 			<p>Enter date for Public Notices export:<br></p>
-			<input type="date" name="targetday" min="2000-01-02"><br>
+			<input type="date" name="targetday" min="2000-01-02" style="max-width:300px;"><br>
 			<input type="submit" name="getexport">
 			<input name="action" type="hidden" id="action" value="getexport" />
 		</form>
@@ -91,40 +74,14 @@ get_header(); ?>
             }
             $count = $count + 1;
           } // end for
-          //echo "<p>thats it. </p>";
           echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
-          //echo "<pre>".$out_html."</pre>";
-          echo "<p>here we go again....</p>";
-          echo '<div id="public-notice-out">';
+          ?>
+          <button onClick ="downloadPN()">Download</button>
+          <?php
+          echo '<div id="public-notice-out" style="display: none;">';
           echo $out_html;
           echo '</div>';
-          //echo"<pre>";  var_dump($pnotice_array);  echo "</pre>";
-          ?>
-          <form action="<?php the_permalink(); ?>" method="post">
-            <input type="hidden" name="pnotices" value="<?php echo $out_html ?>">
-            <input type="submit" name="submit_parse"  value="Download ">
-          </form>
-          <?php
 
-
-
-        echo "<p>Writing2....</p>";
-
-  /*     $fp = fopen('fv-export.txt', 'w');
-       fwrite($fp, $out_html );
-       fclose($fp);
-
-       header('Content-Type: application/text');
-       header('Content-Disposition: attachment; filename="fv-export.txt"');
-       header('Pragma: no-cache');
-       header('Expires: 0');
-       header('Cache-Control: must-revalidate');
-       header('Pragma: public');
-       header('Content-Length: ' . filesize('fv-export.txt'));
-       readfile('fv-export.txt');
-       exit;
-*/
-       //exit;
       } else {
           echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
         }
@@ -142,3 +99,13 @@ get_header(); ?>
 </div><!-- .page-right-sidebar container -->
 
 <?php get_footer(); ?>
+<script>
+function downloadPN(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "fv-export.txt";
+    a.href = "data:text/html," + document.getElementById("public-notice-out").innerHTML;
+    a.click();
+}
+</script>
