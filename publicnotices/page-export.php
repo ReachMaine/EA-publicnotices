@@ -45,7 +45,6 @@ get_header(); ?>
 			<input type="submit" name="getexport">
 			<input name="action" type="hidden" id="action" value="getexport" />
 		</form>
-<p>replacing html </p>
 		<div id="export_notices">
 
 			<?php if ($indate) {
@@ -60,12 +59,11 @@ get_header(); ?>
             $post_text = strip_tags($post_text); // strip out all html & php tags.
             $post_text = trim($post_text); // trim
             $post_text = trim(preg_replace('/\t+/', ' ', $post_text)); // replace tabs with a space
-            $post_text = mb_convert_encoding($post_text,"HTML-ENTITIES" ); // trying
+            // try htmlentities() to get rid of quotes & bullets.
 
             if ($post_text) { // if stripping html leaves nothing left (image only)
               $out_html .= '<notice><subcategory_id>17</subcategory_id>';
               $out_html .= '<date>'.$pnotice->p_date.'</date>';
-              //echo "<p> post title: ".$pnotice->post_title."</p>";
               $out_html .= $pnotice->post_title.' ';
               $out_html .= $post_text;
               $out_html .= '</notice>';
