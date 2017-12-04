@@ -9,6 +9,8 @@ Template name: Export Notices
 
 if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['action'] == 'getexport' ) {
     $indate = $_GET['targetday'];
+    $in_date_date = new DateTime($indate);
+    $datestr = $in_date_date->format("Ymd");
 }
 function get_public_notices ($in_date_str) {
   global $wpdb;
@@ -66,7 +68,8 @@ get_header(); ?>
               $out_html .= '<date>'.$pnotice->p_date.'</date>';
               $out_html .= $pnotice->post_title.' ';
               $out_html .= $post_text;
-              $out_html .= '</notice>';
+              $out_html .= '</notice>
+'; // include CRLF
               $pcount = $pcount + 1;
             }
             $count = $count + 1;
@@ -74,6 +77,8 @@ get_header(); ?>
           echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
           ?>
           <button onClick ="downloadPN()">Download</button>
+          <button onClick ="downloadEAPN()">Download EA </button>
+          <button onClick ="downloadMDIPN()">Download MDI</button>
           <?php
           echo '<div id="public-notice-out" style="display: none;">';
           echo $out_html;
@@ -103,6 +108,22 @@ function downloadPN(){
     );
     a.download = "fv-export.txt";
     a.href = "data:text/html," + document.getElementById("public-notice-out").innerHTML;
+    a.click();
+}
+function downloadEAPN(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "mpn_upload_11.<?php echo $datestr.".xml"; ?>";
+    a.href = "data:text/html," +  document.getElementById("public-notice-out").innerHTML;
+    a.click();
+}
+function downloadMDIPN(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "mpn_upload_20.<?php echo $datestr.".xml"; ?>";
+    a.href = "data:text/html,"  + document.getElementById("public-notice-out").innerHTML;
     a.click();
 }
 </script>
