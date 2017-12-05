@@ -76,8 +76,8 @@ get_header(); ?>
           } // end for
           echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
           ?>
-          <button onClick ="downloadPN()">Download</button>
-          <button onClick ="downloadEAPN()">Download EA </button>
+          <button onClick ="downloadPN()" style="margin-right: 5px;">Download</button>
+          <button onClick ="downloadEAPN()" style="margin-right: 5px;">Download EA </button>
           <button onClick ="downloadMDIPN()">Download MDI</button>
           <?php
           echo '<div id="public-notice-out" style="display: none;">';
@@ -99,7 +99,14 @@ get_header(); ?>
 
 </div><!-- .row -->
 </div><!-- .page-right-sidebar container -->
-
+<div id="MDI_sig" style="display: none; visibility:hidden">
+<username>mdislander</username>
+<password>hancock</password>
+</div>
+<div id="EA_sig" style="display: none; visibility:hidden">
+<username>eamerican</username>
+<password>hancock</password>
+</div>
 <?php get_footer(); ?>
 <script>
 function downloadPN(){
@@ -115,7 +122,7 @@ function downloadEAPN(){
         document.createElement("a")
     );
     a.download = "mpn_upload_11.<?php echo $datestr.".xml"; ?>";
-    a.href = "data:text/html," +  document.getElementById("public-notice-out").innerHTML;
+    a.href ="data:text/html," + "<xml>" + document.getElementById("EA_sig").innerHTML + document.getElementById("public-notice-out").innerHTML + "</xml>";
     a.click();
 }
 function downloadMDIPN(){
@@ -123,7 +130,7 @@ function downloadMDIPN(){
         document.createElement("a")
     );
     a.download = "mpn_upload_20.<?php echo $datestr.".xml"; ?>";
-    a.href = "data:text/html,"  + document.getElementById("public-notice-out").innerHTML;
+    a.href = "data:text/html,"  + "<xml>" + document.getElementById("MDI_sig").innerHTML + document.getElementById("public-notice-out").innerHTML + "</xml>";
     a.click();
 }
 </script>
