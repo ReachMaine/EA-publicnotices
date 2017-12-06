@@ -62,19 +62,26 @@ get_header(); ?>
             $post_text = trim($post_text); // trim
             $post_text = trim(preg_replace('/\t+/', ' ', $post_text)); // replace tabs with a space
             // trying to get rid of quotes & bullets and Heidi  Noël special char
-            //$post_text = htmlentities($post_text);
-            //$post_text = htmlentities($post_text, ENT_QUOTES, "ENT_HTML5");
-            //$post_text = iconv('UTF-8', 'ISO-8859-1//TRANSLIT//IGNORE', $post_text); = nope, vonverts it but not to html
-            // trying direct approach
 
-            $post_text =  str_replace("ë", 'e', $post_text);
-            $post_text =  str_replace("“", '&ldquo;', $post_text);
-            $post_text =  str_replace("”", '&rdquo;', $post_text);
+            //$trans = get_html_translation_table(HTML_ENTITIES);
+            //$post_text = strtr($post_text, $trans); // convert speical chars to htlm equivalents, gets some, I think, do this first...
+            //$post_text =  htmlentities($post_text); // try to strip special chars....
+
+            // trying direct approach for some things....
+            $post_text =  str_replace("©", '&copy;', $post_text); // no sure about this one.
+            $post_text =  str_replace("ë", 'e', $post_text);  // yep works, if dont do the strtr
+            // these below dont really work.
+            $post_text = str_replace ('“', '&ldquo;', $post_text);
+            $post_text = str_replace ('”', '&rdquo;', $post_text);
+            $post_text = str_replace ('‘', '&lsquo;', $post_text);
+            $post_text = str_replace ('’', '&rsquo;', $post_text);
             if ($post_text) { // if stripping html leaves nothing left (image only)
-              $out_html .= '<notice><subcategory_id>17preg3</subcategory_id>';
+              $out_html .= '<notice><subcategory_id>17</subcategory_id>';
               $out_html .= '<date>'.$pnotice->p_date.'</date>';
+              $out_html .= '<text>';
               $out_html .= $pnotice->post_title.' ';
               $out_html .= $post_text;
+              $out_html .= '</text>';
               $out_html .= '</notice>
 '; // include CRLF
               $pcount = $pcount + 1;
