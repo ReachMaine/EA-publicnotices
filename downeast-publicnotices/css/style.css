@@ -1,0 +1,209 @@
+/*
+Theme Name: downeast-calendar
+Description: Oshin Child Theme for downeastmaine calendar, public notices
+Author: Reach Maine
+Template: oshin
+Version: 1.2
+*/
+@import url("../oshin/style.css");
+/* ----------- Colors ---------------------------------- */
+/* ----------- end Colors ----------- */
+/* ----------- Typography ------------------------------- */
+i.fa-pull-left {
+  float: left;
+  padding-right: 5px; }
+
+i.fa-pull-right {
+  float: right;
+  padding-left: 5px; }
+
+p:empty {
+  display: none; }
+
+/* ----------- end typography ----------- */
+/* standard Reach styling of Oshin */
+.be-themes-comments,
+.post-meta.post-comments {
+  display: none; }
+
+.post-content-wrap .post-content .tatsu-section .tatsu-section-pad {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important; }
+
+.post-meta.post-category {
+  display: none; }
+
+.post-meta.post-author .post-meta-sep {
+  display: none; }
+
+.title-module-wrap.page-title-module-custom {
+  padding: 10px 0px; }
+  .title-module-wrap.page-title-module-custom h1.page-title-custom {
+    margin-bottom: 0px; }
+
+.left-sidebar-page,
+.right-sidebar-page,
+.no-sidebar-page .be-section-pad:first-child,
+.page-template-page-940-php #content,
+.no-sidebar-page #content-wrap,
+.portfolio-archives.no-sidebar-page #content-wrap {
+  padding-top: 40px;
+  padding-bottom: 40px; }
+
+.tatsu-module {
+  margin-bottom: 15px; }
+
+.page #comments {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important; }
+
+.tatsu-column .tatsu-single-image img {
+  width: 100%; }
+
+.wpcf7-form .wpcf7-form-control.wpcf7-submit,
+input[type="submit"] {
+  border: 0px;
+  padding: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  cursor: pointer; }
+
+/* Styling for events */
+.tribe-events-loop .tribe-events-event-image + .tribe-events-desc-container {
+  width: 66%;
+  float: left; }
+.tribe-events-loop h2.tribe-events-list-event-title.entry-title + .tribe-events-desc-container {
+  width: 100%;
+  float: left; }
+
+.single-tribe_events #tribe-events-content .tribe-events-event-image {
+  float: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 40%; }
+.single-tribe_events #tribe-events-content .tribe-events-schedule .tribe-events-cost {
+  padding-left: 8px; }
+.single-tribe_events #tribe-events-content .tribe-events-event-meta {
+  clear: both; }
+  .single-tribe_events #tribe-events-content .tribe-events-event-meta .tribe-events-meta-group {
+    margin-bottom: 0px; }
+    .single-tribe_events #tribe-events-content .tribe-events-event-meta .tribe-events-meta-group .tribe-events-single-section-title {
+      margin-top: 0px;
+      margin-bottom: 0px; }
+
+/******* add event **********/
+#tribe-community-events .eai-recur-txt {
+  color: red;
+  line-height: normal; }
+#tribe-community-events .tribe-section.tribe-section-taxonomy,
+#tribe-community-events .recurrence-row {
+  display: none;
+  visibility: hidden; }
+
+/******* End add event **********/
+/*** slidebar in oshine slidebar is above main content *** */
+/*  header stuff - here */
+#header #header-top-bar {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.79+0,0.54+75,0+100 */
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.79) 0%, rgba(255, 255, 255, 0.54) 75%, rgba(255, 255, 255, 0) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.79) 0%, rgba(255, 255, 255, 0.54) 75%, rgba(255, 255, 255, 0) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.79) 0%, rgba(255, 255, 255, 0.54) 75%, rgba(255, 255, 255, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9ffffff', endColorstr='#00ffffff',GradientType=0 );
+  /* IE6-9 */ }
+  #header #header-top-bar #topbar-menu li:after {
+    padding-left: 5px;
+    padding-right: 5px; }
+  #header #header-top-bar #topbar-menu img {
+    max-height: 24px; }
+#header #header-inner-wrap {
+  background: none; }
+  #header #header-inner-wrap #header-controls-right,
+  #header #header-inner-wrap .logo,
+  #header #header-inner-wrap #header-contols-name,
+  #header #header-inner-wrap #header-controls-left {
+    line-height: 75px; }
+  #header #header-inner-wrap .logo {
+    text-align: left;
+    float: left; }
+  #header #header-inner-wrap #header-contols-name {
+    vertical-align: middle;
+    float: left;
+    padding-left: 10px; }
+    #header #header-inner-wrap #header-contols-name a {
+      color: white;
+      font-family: Lato, "Open Sans", "Arial", sans-serif;
+      font-weight: 400;
+      font-size: 45px; }
+  #header #header-inner-wrap #reach-header-widget {
+    text-align: center;
+    line-height: normal;
+    clear: both;
+    padding-top: 10px;
+    padding-bottom: 20px; }
+    #header #header-inner-wrap #reach-header-widget .widget {
+      margin-bottom: 0px; }
+  #header #header-inner-wrap #header-bottom-bar #header-bottom-bar-wrap {
+    z-index: initial; }
+
+/*** styling of content */
+#content.no-sidebar-page #content-wrap {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+#content.right-sidebar-page {
+  padding-top: 45px;
+  padding-bottom: 45px; }
+
+/** sidebar
+
+/** footer **/
+#reach-bottom-cta {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgba(78, 114, 176, 0.22); }
+  #reach-bottom-cta .widget {
+    margin-bottom: 0px; }
+
+#bottom-widgets {
+  border-top: 4px solid black;
+  padding-top: 20px;
+  padding-bottom: 10px; }
+  #bottom-widgets .widget_nav_menu h6 {
+    text-align: center; }
+  #bottom-widgets .widget_nav_menu ul.menu li:before {
+    display: none; }
+  #bottom-widgets .widget_nav_menu ul.menu li {
+    padding-left: 0px;
+    text-align: center; }
+
+#footer a.reach-logo {
+  color: #888; }
+#footer .reach-logo:before {
+  content: url("images/reach-favicon.png");
+  padding-right: 4px; }
+
+/* *** keep this at the end *** */
+/* **** media **** */
+@media only screen and (max-width: 960px) {
+  #header #header-controls-right .mobile-nav-controller {
+    padding-top: 15px; } }
+@media only screen and (max-width: 767px) {
+  #hero-section .hero-section-wrap.be-bg-cover {
+    height: 300px !important; }
+
+  #content.right-sidebar-page {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+
+  .tatsu-row-wrap.tatsu-eq-cols .tatsu-column {
+    min-height: initial; }
+
+  #right-sidebar, #left-sidebar {
+    margin-top: 0px;
+    margin-bottom: 0px; } }

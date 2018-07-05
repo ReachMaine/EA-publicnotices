@@ -1,0 +1,11 @@
+Notes on our "unified Oshine template for EA satelite sites (public notices, calendar, classifieds)"
+
+ - Using blog header style 2.
+ - background image set in oshine options for the header-inner-wrap, but pulled and used on the overall headers
+      (then css the header-inner-wrap out)
+ - add widget area to header under logo for broadstreet banner ads.
+
+ Oshine options
+  - header wrap:  on
+  - header style2
+  - header controls-name is hard coded in header-items
