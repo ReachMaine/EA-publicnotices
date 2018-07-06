@@ -1,6 +1,7 @@
 Notes on our "unified Oshine template for EA satelite sites (public notices, calendar, classifieds)"
 
- - Using blog header style 2.
+ - Using  header style 2.
+ - blog style:  large thumbnail (for public notices) there are no images.
  - background image set in oshine options for the header-inner-wrap, but pulled and used on the overall headers
       (then css the header-inner-wrap out)
  - add widget area to header under logo for broadstreet banner ads.

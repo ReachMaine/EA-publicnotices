@@ -1,0 +1,61 @@
+/* Styling for events */
+// loops and archives
+.tribe-events-loop {
+	.tribe-events-list-separator-month {
+
+	}
+	// put description & meta data on left (image on right) - for list & map view (- media dependent)
+	.tribe-events-event-image + .tribe-events-desc-container { // image exists in list view & mapview
+		//background-color: red;
+		width: 66%;
+		float: left;
+	}
+	h2.tribe-events-list-event-title.entry-title + .tribe-events-desc-container { // no image list view
+		width: 100%;
+		// background-color: green;
+		float: left;
+	}
+}
+
+// single
+.single-tribe_events { // body class
+	#tribe-events-content {
+		.tribe-events-event-image {
+			float: right;
+			padding-left: 10px;
+			padding-right: 10px;
+			max-width: 40%;
+		}
+		.tribe-events-schedule {
+			.tribe-events-cost {
+				padding-left: 8px;
+			}
+		}
+		.tribe-events-event-meta {
+			clear: both;
+			.tribe-events-meta-group {
+				margin-bottom: 0px;
+				.tribe-events-single-section-title {
+					margin-top: 0px;
+					margin-bottom: 0px;
+				}
+			}
+		}
+	}
+}
+
+/******* add event **********/
+#tribe-community-events {
+	.eai-recur-txt {
+	  color: red;
+		line-height: normal;
+	}
+	// hide some stuff.
+	.tribe-section.tribe-section-taxonomy,
+	.recurrence-row {
+	  display: none;
+	  visibility: hidden;
+	}
+}
+
+/******* End add event **********/

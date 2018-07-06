@@ -1,0 +1,53 @@
+/* **** media **** */
+// oshine breakpts
+// mobile menu shows at max-width: 960px
+// small desktop: (min-width: 960px) and (max-width: 1279px) {
+// tablet max-width: 1024px
+// max-width: 767px
+// (min-width: 480px) and (max-width: 767px)
+
+
+@media only screen and (min-width: 960px) and (max-width: 1279px) { // small desktop
+}
+
+@media only screen and (max-width: 1024px) { // tablet
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) { // tablet
+}
+
+@media only screen and (max-width: 960px) {
+  // mobile menu shows here.
+  #header {
+    #header-controls-right {
+      .mobile-nav-controller {
+        padding-top: 15px; // vertically center hamberger
+      }
+    }
+  }
+
+}
+@media only screen and (max-width: 767px) { // mobile - mobile menu shows here.
+	// hide-mobile available from tatsu
+
+    #hero-section .hero-section-wrap.be-bg-cover{
+      height: 300px!important;
+    }
+
+    #content.right-sidebar-page {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+      // override tatsu equal columns
+      .tatsu-row-wrap.tatsu-eq-cols .tatsu-column {
+        min-height: initial;
+      }
+
+      // too airy for mobile
+      #right-sidebar, #left-sidebar  {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) { // mobile 480
+}

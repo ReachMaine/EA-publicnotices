@@ -1,0 +1,61 @@
+/* standard Reach styling of Oshin */
+// hide comments on posts
+.be-themes-comments,
+.post-meta.post-comments {
+	display: none;
+}
+// blog top & bottom padding (tatsu)
+// force to 30px
+.post-content-wrap {
+		.post-content {
+			.tatsu-section {
+				.tatsu-section-pad {
+					padding-top: 30px!important;
+					padding-bottom: 30px!important;
+				}
+			}
+		}
+}
+
+
+
+
+.title-module-wrap.page-title-module-custom {
+	padding: 10px 0px;
+	h1.page-title-custom{
+		margin-bottom: 0px;
+	}
+}
+.left-sidebar-page,
+.right-sidebar-page,
+.no-sidebar-page .be-section-pad:first-child,
+.page-template-page-940-php #content,
+.no-sidebar-page #content-wrap,
+.portfolio-archives.no-sidebar-page #content-wrap {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.tatsu-module {
+  margin-bottom: 15px;
+}
+.page #comments {
+	padding-top: 0px!important;
+	padding-bottom: 0px!important;
+}
+// for IE, make image width 100% s.t. it doesnt get cut off.
+// not sure if just in column or not....
+.tatsu-column .tatsu-single-image img {
+	width: 100%;
+}
+// for IE, stop ugly buttons
+.wpcf7-form .wpcf7-form-control.wpcf7-submit,
+input[type="submit"] {
+	border: 0px;
+	padding: 18px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-radius: 3px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	cursor: pointer;
+}

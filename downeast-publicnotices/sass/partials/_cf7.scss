@@ -1,0 +1,68 @@
+// contact form 7 styling
+.wpcf7-form {
+   textarea {
+      height: 200px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+       max-width: 100%;
+    }
+    input[type="tel"]{
+       width: 200px;
+    }
+    input.cf7-med {
+      width: 200px;
+    }
+    input.cf7-small {
+      width: 80px;
+    }
+    input.wpcf7-form-control.wpcf7-submit {
+      padding: 18px;
+      border: 0px;
+      border: none;
+      border-radius: 3px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    label {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    label.cf7-required:after {
+      content:"*";
+      color: red;
+    }
+    .one-half, .one-third, .two-third {
+      position: relative;
+      //margin-right: 4%;
+      padding-right: 2%;
+      padding-bottom: 5px;
+      float: left;
+      // width set in foundation.css
+    }
+    .one-half.last, .one-third.last, .two-third.last {
+      //margin-right: 0px!important;
+      padding-right: 0px;
+      clear: right;
+    }
+}
+.wpcf7 .wpcf7-form .wpcf7-response-output.wpcf7-mail-sent-ok {
+	color: $cf7-success-color;
+	background-color: $cf7-success-background;
+	font-weight: bold;
+}

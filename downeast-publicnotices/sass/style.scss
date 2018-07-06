@@ -1,0 +1,172 @@
+/*
+Theme Name: downeast-publicnotices
+Description: Oshin Child Theme for downeastmaine public notices
+Author: Reach Maine
+Template: oshin
+Version: 1.2
+*/
+
+@import url("../oshin/style.css");
+@import "partials/colors";
+@import "partials/typography";
+@import "partials/oshine";
+@import "partials/_tribe-events";
+
+
+/*** slidebar in oshine slidebar is above main content *** */
+.sb-slidebar { // the sidebar sliding bar for mobil menu
+
+}
+/*  header stuff - here */
+#header {
+	#header-top-bar {
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.79+0,0.54+75,0+100 */
+		background: -moz-linear-gradient(top, rgba(255,255,255,0.79) 0%, rgba(255,255,255,0.54) 75%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(255,255,255,0.79) 0%,rgba(255,255,255,0.54) 75%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(255,255,255,0.79) 0%,rgba(255,255,255,0.54) 75%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+		#topbar-menu { // ul
+			li:after { // add spacing around pipe
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			img {
+				max-height: 24px;
+			}
+		}
+	}
+	#header-inner-wrap {
+		//background-color: transparent;
+		background: none; // we put background on header not header-inner-wrap so try to hide here.
+		#header-controls-right,  // all the "header sections"
+		.logo,
+		#header-contols-name,
+		#header-controls-left {
+			line-height: 75px;
+		}
+		.logo {
+			text-align: left;
+			float:left;
+		}
+		#header-contols-name {
+			vertical-align: middle;
+			float: left;
+			padding-left: 10px;
+
+			a {
+				color: white;
+				font-family: Lato, "Open Sans", "Arial", sans-serif;
+				font-weight: 400;
+				font-size: 45px;
+			}
+		}
+		#reach-header-widget {
+			 text-align: center;
+			 line-height: normal;
+			 clear: both;
+			 padding-top: 10px;
+			 padding-bottom: 20px;
+			 .widget {
+				 margin-bottom: 0px;
+			 }
+
+		}
+		#header-bottom-bar {
+			#header-bottom-bar-wrap {
+				z-index: initial; // be-wrap gives it a z=index of 2 which makes menu show through fly-out ads
+			}
+
+		}
+	} // header-inner-warp
+
+}
+
+
+/*** styling of content */
+#content.no-sidebar-page #content-wrap {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#content.right-sidebar-page {
+	padding-top: 45px;  // small at mobile in media
+	padding-bottom: 45px;
+}
+/** blog archive & single posts **/
+.archive, .single-post {
+	#content {
+		article {
+			.post-title {
+				text-align: center;
+			}
+			.post-top-details {
+				.post-meta {
+					display: block;
+					width: 100%;
+					text-align: center;
+					.post-meta-sep {
+						display: none;
+					}
+				}
+				// hide the 'posted in' category on blog posts
+				.post-meta.post-category {
+					display: none;
+				}
+			}
+		}
+	}
+}
+// just archive
+.blog-separator {
+	.separator {
+			margin-top: 0px;
+	}
+}
+/** blog posts, ie. public notice **/
+
+
+
+/** sidebar **/
+
+
+/** footer **/
+
+// reach-bottom-cta
+#reach-bottom-cta{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: $bottom-cta-bkg;
+	.widget {
+    margin-bottom: 0px;
+	}
+}
+#bottom-widgets {
+	border-top: 4px solid black;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	.widget_nav_menu {
+		h6 { // title
+			text-align: center;
+		}
+		ul.menu {
+			li:before {
+				display: none;
+			}
+			li {
+				padding-left: 0px;
+				text-align: center;
+			}
+		}
+	}
+}
+// footer
+#footer {
+    a.reach-logo {
+    	color: #888;
+    }
+    .reach-logo:before {
+    	content: url('images/reach-favicon.png');
+    	padding-right: 4px;
+    }
+}
+/* *** keep this at the end *** */
+@import "partials/media";

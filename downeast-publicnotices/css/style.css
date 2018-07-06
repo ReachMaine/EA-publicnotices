@@ -1,6 +1,6 @@
 /*
-Theme Name: downeast-calendar
-Description: Oshin Child Theme for downeastmaine calendar, public notices
+Theme Name: downeast-publicnotices
+Description: Oshin Child Theme for downeastmaine public notices
 Author: Reach Maine
 Template: oshin
 Version: 1.2
@@ -29,12 +29,6 @@ p:empty {
 .post-content-wrap .post-content .tatsu-section .tatsu-section-pad {
   padding-top: 30px !important;
   padding-bottom: 30px !important; }
-
-.post-meta.post-category {
-  display: none; }
-
-.post-meta.post-author .post-meta-sep {
-  display: none; }
 
 .title-module-wrap.page-title-module-custom {
   padding: 10px 0px; }
@@ -160,8 +154,23 @@ input[type="submit"] {
   padding-top: 45px;
   padding-bottom: 45px; }
 
-/** sidebar
+/** blog archive & single posts **/
+.archive #content article .post-title, .single-post #content article .post-title {
+  text-align: center; }
+.archive #content article .post-top-details .post-meta, .single-post #content article .post-top-details .post-meta {
+  display: block;
+  width: 100%;
+  text-align: center; }
+  .archive #content article .post-top-details .post-meta .post-meta-sep, .single-post #content article .post-top-details .post-meta .post-meta-sep {
+    display: none; }
+.archive #content article .post-top-details .post-meta.post-category, .single-post #content article .post-top-details .post-meta.post-category {
+  display: none; }
 
+.blog-separator .separator {
+  margin-top: 0px; }
+
+/** blog posts, ie. public notice **/
+/** sidebar **/
 /** footer **/
 #reach-bottom-cta {
   padding-top: 20px;
