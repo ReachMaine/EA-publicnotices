@@ -8,7 +8,7 @@
         <?php be_themes_get_header_logo_image(); ?>
     </div>
     <?php } ?>
-    <div id="header-contols-name"><a href="<?php echo esc_url(home_url());?>"> Calendar </a></div><?php /* zig */ ?>
+    <div id="header-contols-name"><a href="<?php echo esc_url(home_url());?>"> Public Notices</a></div><?php /* zig */ ?>
     <div id="header-controls-right">
         <?php
             if(isset($be_themes_data['top-menu-style']) && !empty($be_themes_data['top-menu-style']) && $be_themes_data['top-menu-style'] == 'menu-animate-fall') { ?>
