@@ -1,10 +1,11 @@
 <?php
 /*
-Template name: Export Notices
-* author: zig
-* date: 21Nov17
-* version: 1.0
-* based on flatsome page-right-sidebar page template.
+ *Template name: Export Notices
+ * author: zig
+ * date: 9 jul 18
+ * version: 1.2
+ * based on oshine default full width template for displaying pages.
+ *
 */
 
 if ( 'GET' == $_SERVER['REQUEST_METHOD'] && !empty( $_GET['action'] ) && $_GET['action'] == 'getexport' ) {
@@ -27,92 +28,95 @@ function get_public_notices ($in_date_str) {
 	$sqlresult = $wpdb->get_results($sqlreq);
   return $sqlresult;
 }
+get_header();
+global $be_themes_data;
+while(have_posts()): the_post();
+	$be_pb_class = 'page-builder';
+	$be_pb_disabled = get_post_meta( $post->ID, '_be_pb_disable', true );
+	$sticky_sections = get_post_meta( $post->ID, 'be_themes_sticky_sections', true );
+	$sticky_scroll_type = get_post_meta( $post->ID, 'be_themes_sticky_scroll_type', true );
+	$sticky_overlay = get_post_meta( $post->ID, 'be_themes_sticky_overlay', true );
+	if( !function_exists( 'is_edited_with_tatsu' ) || !is_edited_with_tatsu( get_the_ID() ) ) {
+		$be_pb_class = 'be-wrap no-page-builder';
+		get_template_part( 'page-breadcrumb' );
+	} ?>
+	<div id="content" class="no-sidebar-page">
+		<div id="content-wrap" class="<?php echo $be_pb_class; ?>">
+			<section id="page-content">
+
+				<div class="clearfix<?php echo ( ( isset( $sticky_sections ) && !empty( $sticky_sections ) ) ? " be-sections-wrap" : ""); ?>" <?php echo ( isset( $sticky_sections ) && !empty( $sticky_sections ) ) ? ( 'data-sticky-scroll = "' . $sticky_scroll_type . '" data-sticky-overlay = "' . $sticky_overlay . '"'  ) : ""; ?> >
+					<form method="get" action="<?php the_permalink(); ?>">
+						<p>Enter date for Public Notices export:<br></p>
+						<input type="date" name="targetday" min="2000-01-02" style="max-width:300px;"><br>
+						<input type="submit" name="getexport">
+						<input name="action" type="hidden" id="action" value="getexport" />
+					</form>
 
 
-get_header(); ?>
-<?php if( has_excerpt() ) { ?>
-<div class="page-header">
-	<?php the_excerpt(); ?>
-</div>
-<?php } ?>
+					<div id="export_notices">
 
-<div class="page-wrapper page-right-sidebar">
-<div class="row">
+						<?php if ($indate) {
+							$pnotice_array =  get_public_notices($indate);
+							if (count($pnotice_array) > 0) {
 
-<div id="content" class="large-9 left columns" role="main">
-	<div class="page-inner">
-		<form method="get" action="<?php the_permalink(); ?>">
-			<p>Enter date for Public Notices export:<br></p>
-			<input type="date" name="targetday" min="2000-01-02" style="max-width:300px;"><br>
-			<input type="submit" name="getexport">
-			<input name="action" type="hidden" id="action" value="getexport" />
-		</form>
-		<div id="export_notices">
+								$count = 0;
+								$pcount = 0;
+								$out_html = "";
+								foreach($pnotice_array as $pnotice) {
+									$post_text = $pnotice->post_content;
+									$post_text = strip_tags($post_text); // strip out all html & php tags.
+									$post_text = trim($post_text); // trim
+									$post_text = trim(preg_replace('/\t+/', ' ', $post_text)); // replace tabs with a space
+									// trying to get rid of quotes & bullets and Heidi  Noël special char
 
-			<?php if ($indate) {
-				$pnotice_array =  get_public_notices($indate);
-        if (count($pnotice_array) > 0) {
+									//$trans = get_html_translation_table(HTML_ENTITIES);
+									//$post_text = strtr($post_text, $trans); // convert speical chars to htlm equivalents, gets some, I think, do this first...
+									//$post_text =  htmlentities($post_text); // try to strip special chars....
 
-          $count = 0;
-          $pcount = 0;
-          $out_html = "";
-          foreach($pnotice_array as $pnotice) {
-            $post_text = $pnotice->post_content;
-            $post_text = strip_tags($post_text); // strip out all html & php tags.
-            $post_text = trim($post_text); // trim
-            $post_text = trim(preg_replace('/\t+/', ' ', $post_text)); // replace tabs with a space
-            // trying to get rid of quotes & bullets and Heidi  Noël special char
+									// trying direct approach for some things....
+									$post_text =  str_replace("©", '&copy;', $post_text); // no sure about this one.
+									$post_text =  str_replace("ë", 'e', $post_text);  // yep works, if dont do the strtr
+									// these below dont really work.
+									$post_text = str_replace ('“', '&ldquo;', $post_text);
+									$post_text = str_replace ('”', '&rdquo;', $post_text);
+									$post_text = str_replace ('‘', '&lsquo;', $post_text);
+									$post_text = str_replace ('’', '&rsquo;', $post_text);
+									if ($post_text) { // if stripping html leaves nothing left (image only)
+										$out_html .= '<notice><subcategory_id>17</subcategory_id>';
+										$out_html .= '<date>'.$pnotice->p_date.'</date>';
+										$out_html .= '<text>';
+										$out_html .= $pnotice->post_title.' ';
+										$out_html .= $post_text;
+										$out_html .= '</text>';
+										$out_html .= '</notice>
+					'; // include CRLF
+										$pcount = $pcount + 1;
+									}
+									$count = $count + 1;
+								} // end for
+								echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
+								?>
+								<button onClick ="downloadPN()" style="margin-right: 5px;">Download</button>
+								<button onClick ="downloadEAPN()" style="margin-right: 5px;">Download EA </button>
+								<button onClick ="downloadMDIPN()">Download MDI</button>
+								<?php
+								echo '<div id="public-notice-out" style="display: none;">';
+								echo $out_html;
+								echo '</div>';
 
-            //$trans = get_html_translation_table(HTML_ENTITIES);
-            //$post_text = strtr($post_text, $trans); // convert speical chars to htlm equivalents, gets some, I think, do this first...
-            //$post_text =  htmlentities($post_text); // try to strip special chars....
+						} else {
+								echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
+							}
+						} ?>
+					</div>
+				</div> <!--  End Page Content -->
 
-            // trying direct approach for some things....
-            $post_text =  str_replace("©", '&copy;', $post_text); // no sure about this one.
-            $post_text =  str_replace("ë", 'e', $post_text);  // yep works, if dont do the strtr
-            // these below dont really work.
-            $post_text = str_replace ('“', '&ldquo;', $post_text);
-            $post_text = str_replace ('”', '&rdquo;', $post_text);
-            $post_text = str_replace ('‘', '&lsquo;', $post_text);
-            $post_text = str_replace ('’', '&rsquo;', $post_text);
-            if ($post_text) { // if stripping html leaves nothing left (image only)
-              $out_html .= '<notice><subcategory_id>17</subcategory_id>';
-              $out_html .= '<date>'.$pnotice->p_date.'</date>';
-              $out_html .= '<text>';
-              $out_html .= $pnotice->post_title.' ';
-              $out_html .= $post_text;
-              $out_html .= '</text>';
-              $out_html .= '</notice>
-'; // include CRLF
-              $pcount = $pcount + 1;
-            }
-            $count = $count + 1;
-          } // end for
-          echo  "<p>Found ".$pcount." of (".$count.") public notices for ".$indate."</p>";
-          ?>
-          <button onClick ="downloadPN()" style="margin-right: 5px;">Download</button>
-          <button onClick ="downloadEAPN()" style="margin-right: 5px;">Download EA </button>
-          <button onClick ="downloadMDIPN()">Download MDI</button>
-          <?php
-          echo '<div id="public-notice-out" style="display: none;">';
-          echo $out_html;
-          echo '</div>';
-
-      } else {
-          echo "<p>No results for given date. <br>Be sure to use pub date and that public notices are dated by pub date</p>";
-        }
-			} ?>
+			</section>
 		</div>
+	</div>	<?php
+endwhile;
+get_footer(); ?>
 
-	</div><!-- .page-inner -->
-</div><!-- .#content large-9 left -->
-
-<div class="large-3 columns right">
-<?php get_sidebar(); ?>
-</div><!-- .sidebar -->
-
-</div><!-- .row -->
-</div><!-- .page-right-sidebar container -->
 <div id="MDI_sig" style="display: none; visibility:hidden">
 <username>mdislander</username>
 <password>hancock</password>
