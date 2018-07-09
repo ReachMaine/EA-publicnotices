@@ -20,6 +20,9 @@ i.fa-pull-right {
 p:empty {
   display: none; }
 
+.element .post-content img {
+  max-width: 80%; }
+
 /* ----------- end typography ----------- */
 /* standard Reach styling of Oshin */
 .be-themes-comments,
@@ -168,6 +171,13 @@ input[type="submit"] {
 
 .blog-separator .separator {
   margin-top: 0px; }
+
+.archive article.blog-post.element {
+  margin-bottom: 15px; }
+.archive .style5-blog .article-details {
+  padding-top: 20px; }
+.archive .pagination_parent .pagination {
+  text-align: center; }
 
 /** blog posts, ie. public notice **/
 /** sidebar **/

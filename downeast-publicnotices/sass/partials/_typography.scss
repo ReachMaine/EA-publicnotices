@@ -13,4 +13,7 @@ i.fa-pull-right {
 p:empty { // hide any empty p tags (sometimes from images with captions)
     display: none;
 }
+.element .post-content img {
+	max-width: 80%;
+}
 /* ----------- end typography ----------- */
