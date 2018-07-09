@@ -137,6 +137,8 @@ input[type="submit"] {
       font-family: Lato, "Open Sans", "Arial", sans-serif;
       font-weight: 400;
       font-size: 45px; }
+  #header #header-inner-wrap #header-controls-right .be-mobile-menu-icon.style1 span {
+    background-color: #dcdcdc; }
   #header #header-inner-wrap #reach-header-widget {
     text-align: center;
     line-height: normal;

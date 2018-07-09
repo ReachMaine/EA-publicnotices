@@ -60,6 +60,11 @@ Version: 1.2
 				font-size: 45px;
 			}
 		}
+		#header-controls-right {
+			.be-mobile-menu-icon.style1 span {
+				background-color: #dcdcdc;
+			}
+		}
 		#reach-header-widget {
 			 text-align: center;
 			 line-height: normal;
