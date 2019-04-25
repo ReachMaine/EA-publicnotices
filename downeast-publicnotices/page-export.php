@@ -78,12 +78,14 @@ while(have_posts()): the_post();
 									// trying direct approach for some things....
 									$post_text =  str_replace("©", '&copy;', $post_text); // no sure about this one.
 									$post_text =  str_replace("ë", 'e', $post_text);  // yep works, if dont do the strtr
-                  $post_text =  preg_replace('/\#/', '',  $post_text);  //
+                  $post_text =  preg_replace('/\#/', '',  $post_text);  //works
 									// these below dont really work.  probably should try preg_replace
-									$post_text = str_replace ('“', '&ldquo;', $post_text);
+                  $post_text = str_replace ('“', '&ldquo;', $post_text);
 									$post_text = str_replace ('”', '&rdquo;', $post_text);
 									$post_text = str_replace ('‘', '&lsquo;', $post_text);
 									$post_text = str_replace ('’', '&rsquo;', $post_text);
+                  // trying again.  still not working....
+                  $post_text = str_replace(array(chr(145), chr(146), chr(147), chr(148), chr(150), chr(151), chr(133)), array("'", "'", '"', '"', '-', '-', '...'), $post_text);
 									if ($post_text) { // if stripping html leaves nothing left (image only)
 										$out_html .= '<notice><subcategory_id>17</subcategory_id>';
 										$out_html .= '<date>'.$pnotice->p_date.'</date>';
