@@ -25,7 +25,9 @@ function get_public_notices ($in_date_str) {
               post_content,"</text></notice>")
               FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
   $sqlreq = 'SELECT DATE_FORMAT(cast(post_date AS DATE),"%m/%d/%Y") as p_date, post_title, post_content FROM ea_13_posts WHERE cast(post_date AS DATE) = cast("'.$datestr.'" as date) and post_status in ("publish", "future") and post_type = "post" limit 100';
+  /* echo "<pre>SQL Request"; var_dump($sqlreq); echo "</pre>"; */
 	$sqlresult = $wpdb->get_results($sqlreq);
+  /* echo "<pre>"; var_dump($sqlresult); echo "</pre>"; */
   return $sqlresult;
 }
 get_header();
@@ -76,7 +78,8 @@ while(have_posts()): the_post();
 									// trying direct approach for some things....
 									$post_text =  str_replace("©", '&copy;', $post_text); // no sure about this one.
 									$post_text =  str_replace("ë", 'e', $post_text);  // yep works, if dont do the strtr
-									// these below dont really work.
+                  $post_text =  preg_replace('/\#/', '',  $post_text);  //
+									// these below dont really work.  probably should try preg_replace
 									$post_text = str_replace ('“', '&ldquo;', $post_text);
 									$post_text = str_replace ('”', '&rdquo;', $post_text);
 									$post_text = str_replace ('‘', '&lsquo;', $post_text);
